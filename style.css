@@ -152,7 +152,8 @@ button:hover {
 
 /* RESPONSIVE */
 /* Mobile layout */
-@media(max-width: 600px) {
+
+/* @media(max-width: 600px) {
   .events-container {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -167,5 +168,28 @@ button:hover {
   .card {
     width: 100%;
     margin: 0 auto;
+  }
+} */
+
+@media(max-width: 600px) {
+  .events-container {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 card per row */
+    gap: 12px;
+    padding: 0 10px; /* small padding so cards don't touch edges */
+  }
+
+  .card {
+    width: 100% !important; /* force full width */
+    max-width: 100% !important; /* override desktop max-width */
+    margin: 0; /* remove auto margin */
+    justify-self: stretch; /* stretch card to full width */
+    padding: 12px; /* adjust padding for smaller screen */
+  }
+
+  .card:last-child {
+    grid-column: auto; /* remove span 2 on mobile */
+    justify-self: stretch; /* stretch to full width */
+    width: 100% !important;
   }
 }
