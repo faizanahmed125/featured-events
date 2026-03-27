@@ -154,18 +154,18 @@ button:hover {
 /* Mobile layout */
 @media(max-width: 600px) {
   .events-container {
-    grid-template-columns: 1fr; /* 1 card per row */
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 
   .card:last-child {
-    grid-column: auto; /* remove span 2 on mobile */
-    justify-self: auto; /* center automatically */
-    width: 100%; /* full width */
+    grid-column: auto;
+    justify-self: auto;
+    width: 100%;
   }
 
   .card {
-    width: 100%; /* all cards full width */
+    width: 100%;
     margin: 0 auto;
   }
 }
