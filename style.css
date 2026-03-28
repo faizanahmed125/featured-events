@@ -52,6 +52,8 @@ html {
   background-size: cover;
   position: relative;
   animation: fadeIn 1s ease;
+  will-change: transform, opacity;
+
 }
 
 .hero::before {
@@ -114,7 +116,7 @@ html {
   justify-content: center;
   padding: 0;
   transition: transform 0.3s, box-shadow 0.3s;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 .card::before {
