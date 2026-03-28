@@ -1,3 +1,4 @@
+/* GLOBAL RESET */
 * {
   margin: 0;
   padding: 0;
@@ -45,16 +46,36 @@ html {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 70px 20px;
-  background: linear-gradient(to right, #f4f4f4, #e0f7fa);
+  padding: 150px 20px;
+  color: white;
+  background: url('images/hero-bg.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
   animation: fadeIn 1s ease;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
   margin-bottom: 10px;
 }
 
-/* EVENTS */
+/* EVENTS SECTION */
 .events-section {
   padding: 20px 40px;
   text-align: center;
@@ -68,7 +89,7 @@ html {
   border-radius: 50px;
 }
 
-/* CARDS */
+/* EVENT CARDS */
 .events-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -82,25 +103,73 @@ html {
 }
 
 .card {
+  position: relative;
+  color: white;
   border: 1px solid #ddd;
-  padding: 20px;
   border-radius: 10px;
-  transition: 0.3s;
-  background: white;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s forwards;
+  overflow: hidden;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  will-change: transform;
 }
 
-.card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  transition: background 0.3s;
+}
+
+.card .card-content {
+  position: relative;
+  z-index: 2;
+  padding: 15px;
+  text-align: center;
+}
+
+.card .card-content h3,
+.card .card-content p,
+.card .card-content button {
+  color: white;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+
+.card .card-content button {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card .card-content button:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .card h3 {
   margin-bottom: 10px;
 }
 
+.card:hover::before {
+  background: rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.03);  
+}
+
+/* BUTTONS */
 button {
   margin-top: 10px;
   padding: 10px;
@@ -150,46 +219,38 @@ button:hover {
   }
 }
 
-/* RESPONSIVE */
-/* Mobile layout */
-
-/* @media(max-width: 600px) {
+/* RESPONSIVE - MOBILE */
+@media(max-width: 600px) {
   .events-container {
     grid-template-columns: 1fr;
     gap: 12px;
+    padding: 0 10px;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 200px;
+    margin: 0;
+    justify-self: stretch;
+    padding: 12px;
   }
 
   .card:last-child {
     grid-column: auto;
-    justify-self: auto;
-    width: 100%;
-  }
-
-  .card {
-    width: 100%;
-    margin: 0 auto;
-  }
-} */
-
-@media(max-width: 600px) {
-  .events-container {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 card per row */
-    gap: 12px;
-    padding: 0 10px; /* small padding so cards don't touch edges */
-  }
-
-  .card {
-    width: 100% !important; /* force full width */
-    max-width: 100% !important; /* override desktop max-width */
-    margin: 0; /* remove auto margin */
-    justify-self: stretch; /* stretch card to full width */
-    padding: 12px; /* adjust padding for smaller screen */
-  }
-
-  .card:last-child {
-    grid-column: auto; /* remove span 2 on mobile */
-    justify-self: stretch; /* stretch to full width */
+    justify-self: stretch;
     width: 100% !important;
+  }
+
+  .hero {
+    padding: 70px 10px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .hero p {
+    font-size: 14px;
   }
 }
